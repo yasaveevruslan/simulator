@@ -7,7 +7,9 @@ public class StateMachine {
     public static boolean isFirst = true;
 
     public static String commandLogic = "F";
+    public static int numberPalace = 0;
     public static int indexElementLogic = 0;
+
 
     public void Update(){
         if (States.state[currentArray][currentIndex].execute()){

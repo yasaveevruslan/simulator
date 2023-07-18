@@ -1,6 +1,7 @@
 package training;
 
-public class Elements {
+public class Elements
+{
 
     public static float positionX = 0, positionY = 0;
     public static float LastPositionX = 0, LastPositionY = 0;
@@ -8,18 +9,25 @@ public class Elements {
 
     public static double frontUS = 0, rightUS = 0, frontIR = 0, backIR = 0;
 
+    // позиция картинки в окне, ее координаты
     public static float positionXRobot, positionYRobot, positionZRobot;
+
+    // позиция робота на какие координаты он перемещается
     public static float positionXonSimulator, positionYonSimulator, lastPosX, lastPosY;
 
 
-    public void setAxisSpeed(float x, float y, float z){
+    // увеличение координат робота
+    public void setAxisSpeed(float x, float y, float z)
+    {
 
-        positionXonSimulator += x / 4;
-        positionYonSimulator += y / 4;
-        angle += z / 4;
+        positionXonSimulator += x;
+        positionYonSimulator += y;
+        angle += z;
     }
 
-    public void calculateCoordinates(){
+    // подсчет координат
+    public void calculateCoordinates()
+    {
 
         double radians = Math.toRadians(angle);
 
@@ -37,18 +45,20 @@ public class Elements {
 
 
 
-        positionXRobot += positionX - lastPosX;
-        lastPosX = positionX;
+        positionXRobot += positionX / 4 - lastPosX;
+        lastPosX = positionX / 4;
 
-        positionYRobot += positionY - lastPosY;
-        lastPosY = positionY;
+        positionYRobot += positionY / 4 - lastPosY;
+        lastPosY = positionY / 4;
 
         positionZRobot += angle - lastAngle;
         lastAngle = angle;
 
-        System.out.println("X: " + positionXRobot + " Y: " + positionYRobot + " Z: " + positionZRobot);
+        System.out.println("X: " + positionX + " Y: " + positionY + " Z: " + angle); // вывод координат робота
+        System.out.println("X: " + positionXRobot + " Y: " + positionYRobot + " Z: " + positionZRobot); // вывод позиции картинки в окне
     }
 
+    // работа датчиков
     public void calculateSensors(){
 
         frontIR = 0;
@@ -59,6 +69,7 @@ public class Elements {
 
     }
 
+    // сброс координат робота (не затрагиваем позицию картинки)
     public void resetCoordinates(float x, float y){
 
         LastPositionX = positionXonSimulator;
@@ -68,6 +79,8 @@ public class Elements {
         positionY = y;
     }
 
+
+    // сброс угла поворота (не затрагиваем угол картинки)
     public void resetGyro(float z){
         angle = z;
         lastAngle = z;
