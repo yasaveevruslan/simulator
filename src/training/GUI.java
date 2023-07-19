@@ -17,9 +17,7 @@ public class GUI {
     private BufferedImage myPicture;
     private BufferedImage myPicture2;
 
-    private float degrees;
-    private int robotCoordinateX;
-    private int robotCoordinateY;
+
 
     private JFrame frame;
     private JPanel panel;
@@ -57,19 +55,10 @@ public class GUI {
     private void settingsGUI() {
         loadImages();
 
-        inizialize();
-
         createFrame();
         createPanel();
         frame.add(panel);
         frame.setVisible(true);
-    }
-
-    private void inizialize()
-    {
-        robotCoordinateX = Elements.positionXRobot;
-        robotCoordinateY = Elements.positionYRobot;
-        degrees = Elements.positionZRobot;
     }
 
     private void createFrame() {
@@ -122,7 +111,7 @@ public class GUI {
                 super.paintComponent(g);
                 g.drawImage(myPicture, 50, 50, this);
                 addRobotInFrame(g);
-                System.out.println(Elements.positionXRobot + " " + Elements.positionYRobot);
+//                System.out.println(Elements.positionXRobot + " " + Elements.positionYRobot);
             }
         };
         panel.setLayout(new OverlayLayout(panel));

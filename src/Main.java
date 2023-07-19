@@ -22,7 +22,7 @@ public class Main
                     initialize();
                     sm.Time += 0.005f;
                     Thread.sleep(50);
-                    System.out.println("array: " + StateMachine.currentArray + " index: " + StateMachine.currentIndex);
+//                    System.out.println("array: " + StateMachine.currentArray + " index: " + StateMachine.currentIndex);
                 }
                 catch (Exception e)
                 {

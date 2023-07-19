@@ -5,7 +5,7 @@ public class Elements
 
     public static float positionX = 0, positionY = 0;
     public static float LastPositionX = 290, LastPositionY = 290;
-    public static double angle = 0, lastAngle = 0;
+    public static double angle = 0, lastAngle = 90;
 
     public static double frontUS = 0, rightUS = 0, frontIR = 0, backIR = 0;
 
@@ -24,12 +24,12 @@ public class Elements
         {
             positionXonSimulator += 0;
             positionYonSimulator += 0;
-            angle += 0;
+            positionZRobot += 0;
         }else
         {
             positionXonSimulator += x / 4;
             positionYonSimulator += y / 4;
-            angle += z / 4;
+            positionZRobot += z / 4;
         }
 
     }
@@ -37,6 +37,9 @@ public class Elements
     // подсчет координат
     public void calculateCoordinates()
     {
+
+        angle += positionZRobot - lastAngle;
+        lastAngle = positionZRobot;
 
         double radians = Math.toRadians(angle);
 
@@ -52,18 +55,19 @@ public class Elements
         LastPositionX = positionXRobot;
         LastPositionY = positionYRobot;
 
+
+
+
         positionXRobot += positionXonSimulator - lastPosX;
         lastPosX = positionXonSimulator;
 
         positionYRobot += positionYonSimulator - lastPosY;
         lastPosY = positionYonSimulator;
 
-        positionZRobot += angle - lastAngle;
-        lastAngle = angle;
 
 
-        System.out.println("X: " + positionX + " Y: " + positionY + " Z: " + angle); // вывод координат робота
-        System.out.println("X: " + positionXRobot + " Y: " + positionYRobot + " Z: " + positionZRobot); // вывод позиции картинки в окне
+//        System.out.println("X: " + positionX + " Y: " + positionY + " Z: " + angle); // вывод координат робота
+//        System.out.println("X: " + positionXRobot + " Y: " + positionYRobot + " Z: " + positionZRobot); // вывод позиции картинки в окне
     }
 
     // работа датчиков
@@ -91,7 +95,7 @@ public class Elements
     // сброс угла поворота (не затрагиваем угол картинки)
     public void resetGyro(float z){
         angle = z;
-        lastAngle = z;
+        lastAngle = positionZRobot;
     }
 
     public void resetButton(boolean reset)

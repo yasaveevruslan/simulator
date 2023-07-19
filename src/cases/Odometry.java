@@ -80,7 +80,7 @@ public class Odometry implements IState{
     private boolean smooth = false;
 
     private static final float DECELEARTION_XY = 5, NOT_DECELERATION_XY = 220;
-    private static final float DECELEARTION_Z = 0.5f, NOT_DECELERATION_Z = 15;
+    private static final float DECELEARTION_Z = 1, NOT_DECELERATION_Z = 15;
 
 
 
@@ -91,6 +91,7 @@ public class Odometry implements IState{
         float nowY = y - Elements.positionY;
         float nowZ = z - (float) Elements.angle;
 
+        System.out.println("posX: " + nowX + " posY: " + nowY + " posZ: " + nowZ);
         float acc = Function.TransF(timeSpeed, StateMachine.Time - StateMachine.startTime);
 
         if (StateMachine.isFirst)
@@ -153,8 +154,8 @@ public class Odometry implements IState{
 
         float speedX = (float)(r * Math.cos(theta)) * acc;
         float speedY = (float)(r * Math.sin(theta)) * acc;
-//        float speedZ = Function.TransF(speedZfunc, nowZ) * acc;
-        float speedZ = nowZ * acc;
+        float speedZ = Function.TransF(speedZfunc, nowZ) * acc;
+//        float speedZ = nowZ * acc;
 
         if (stopX && stopY && stopZ)
         {

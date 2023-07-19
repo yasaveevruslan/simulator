@@ -18,19 +18,19 @@ public class States {
 
     public static IState[][] state = new IState[][]{
             {
-//                    new Start(),
-//                    new Odometry(States.ABSOLUTE_ODOMETRY, 1000, 0, 90, SmoothEnum.OFF),
-//                    new Odometry(States.ABSOLUTE_ODOMETRY, 1000, -500, -90, SmoothEnum.OFF),
-//                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, -500, -180, SmoothEnum.OFF),
-//                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, 0, SmoothEnum.OFF),
-//                    new End(),
-
                     new Start(),
-                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, 90, SmoothEnum.OFF),
-                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, -90, SmoothEnum.OFF),
-                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, -180, SmoothEnum.OFF),
+                    new Odometry(States.ABSOLUTE_ODOMETRY, 1000, 0, 90, SmoothEnum.OFF),
+                    new Odometry(States.ABSOLUTE_ODOMETRY, 1000, -500, -90, SmoothEnum.OFF),
+                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, -500, -180, SmoothEnum.OFF),
                     new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, 0, SmoothEnum.OFF),
                     new End(),
+
+//                    new Start(),
+//                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, 90, SmoothEnum.OFF),
+//                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, -90, SmoothEnum.OFF),
+//                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, -180, SmoothEnum.OFF),
+//                    new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, 0, SmoothEnum.OFF),
+//                    new End(),
 
             }
     };
