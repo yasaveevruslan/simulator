@@ -153,7 +153,8 @@ public class Odometry implements IState{
 
         float speedX = (float)(r * Math.cos(theta)) * acc;
         float speedY = (float)(r * Math.sin(theta)) * acc;
-        float speedZ = Function.TransF(speedZfunc, nowZ) * acc;
+//        float speedZ = Function.TransF(speedZfunc, nowZ) * acc;
+        float speedZ = nowZ * acc;
 
         if (stopX && stopY && stopZ)
         {

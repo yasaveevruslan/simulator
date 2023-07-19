@@ -98,6 +98,7 @@ public class Elements
     {
         if (reset)
         {
+
             positionXRobot = 290;
             positionYRobot = 290;
             positionZRobot = 90;

@@ -32,6 +32,17 @@ public class GUI {
 
     private final JTextArea infaCoordinateX = new JTextArea(1, 7);
     private final JTextArea infaCoordinateY = new JTextArea(1, 7);
+    private final JTextArea infaCoordinateZ = new JTextArea(1, 7);
+
+    private final JTextArea infaModul = new JTextArea(1, 7);
+
+    private final JTextArea infaArray = new JTextArea(1, 7);
+    private final JTextArea infaIndex = new JTextArea(1, 7);
+
+    private final JTextArea infaFrontUS = new JTextArea(1, 7);
+    private final JTextArea infaRightUS = new JTextArea(1, 7);
+    private final JTextArea infaFrontIR = new JTextArea(1, 7);
+    private final JTextArea infaBackIR = new JTextArea(1, 7);
 
 
     public static boolean robotMoving = false;
@@ -134,30 +145,89 @@ public class GUI {
             }
         });
 
-        smartPanel.add(Box.createVerticalStrut(50));
+//        smartPanel.add(Box.createVerticalStrut(50));
 
         smartPanel.add(infaCoordinateX);
         smartPanel.add(infaCoordinateY);
+        smartPanel.add(infaCoordinateZ);
+
+        smartPanel.add(infaModul);
+
+        smartPanel.add(infaArray);
+        smartPanel.add(infaIndex);
+
+        smartPanel.add(infaFrontUS);
+        smartPanel.add(infaRightUS);
+        smartPanel.add(infaFrontIR);
+        smartPanel.add(infaBackIR);
 
     }
 
 
     private void createBlockInfa(){
         Font font = new Font("Arial", Font.BOLD, 16);
+
         infaCoordinateX.setFont(font);
+        infaCoordinateY.setFont(font);
+        infaCoordinateZ.setFont(font);
+
+        infaModul.setFont(font);
+
+        infaArray.setFont(font);
+        infaIndex.setFont(font);
+
+        infaFrontUS.setFont(font);
+        infaRightUS.setFont(font);
+        infaFrontIR.setFont(font);
+        infaBackIR.setFont(font);
 
         infaCoordinateX.setLineWrap(true);
         infaCoordinateX.setEditable(false);
 
-        infaCoordinateY.setFont(font);
-
         infaCoordinateY.setLineWrap(true);
         infaCoordinateY.setEditable(false);
+
+        infaCoordinateZ.setLineWrap(true);
+        infaCoordinateZ.setEditable(false);
+
+
+        infaModul.setLineWrap(true);
+        infaModul.setEditable(false);
+
+
+        infaArray.setLineWrap(true);
+        infaArray.setEditable(false);
+
+        infaIndex.setLineWrap(true);
+        infaIndex.setEditable(false);
+
+
+        infaFrontUS.setLineWrap(true);
+        infaFrontUS.setEditable(false);
+
+        infaRightUS.setLineWrap(true);
+        infaRightUS.setEditable(false);
+
+        infaFrontIR.setLineWrap(true);
+        infaFrontIR.setEditable(false);
+
+        infaBackIR.setLineWrap(true);
+        infaBackIR.setEditable(false);
 
         Insets padding = new Insets(10, 20, 10, 20); // Верхний, правый, нижний, левый отступы
         infaCoordinateX.setMargin(padding);
         infaCoordinateY.setMargin(padding);
+        infaCoordinateZ.setMargin(padding);
 
+        infaModul.setMargin(padding);
+
+        infaArray.setMargin(padding);
+        infaIndex.setMargin(padding);
+
+        infaFrontUS.setMargin(padding);
+        infaRightUS.setMargin(padding);
+        infaFrontIR.setMargin(padding);
+        infaBackIR.setMargin(padding);
 
     }
 
@@ -190,6 +260,9 @@ public class GUI {
             Elements.positionZRobot = 90;
             Elements.positionXRobot = 290;
             Elements.positionYRobot = 290;
+            Elements.positionX = 0;
+            Elements.positionY = 0;
+            Elements.angle = 0;
             panel.repaint();
             resetClicked = true;
             robotMoving = false;
@@ -232,5 +305,18 @@ public class GUI {
         }
         infaCoordinateX.setText("X: " + String.format("%.4f", Elements.positionX));
         infaCoordinateY.setText("Y: " + String.format("%.4f", Elements.positionY));
+        infaCoordinateZ.setText("Z: " + String.format("%.4f", Elements.angle));
+
+        infaModul.setText("modul: " + StateMachine.commandLogic);
+
+        infaArray.setText("Array: " + StateMachine.currentArray);
+        infaIndex.setText("Array: " + StateMachine.currentIndex);
+
+        infaFrontUS.setText("FrontUS: " + String.format("%.4f", Elements.frontUS));
+        infaRightUS.setText("RightUS: " + String.format("%.4f", Elements.rightUS));
+        infaFrontIR.setText("FrontIR: " + String.format("%.4f", Elements.frontIR));
+        infaBackIR.setText("BackIR: " + String.format("%.4f", Elements.backIR));
+
+
     }
 }
