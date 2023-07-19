@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class GUI {
 
-    private static final String pathArea = "C:\\Users\\1\\IdeaProjects\\LogicSimulatorDriveRep\\simulator-main\\untitled\\src\\testFinal.png";
-    private static final String pathRobot = "C:\\Users\\1\\IdeaProjects\\LogicSimulatorDriveRep\\simulator-main\\untitled\\src\\none.png";
+    private static final String pathArea = "src/testFinal.png";
+    private static final String pathRobot = "src/none.png";
 
     private BufferedImage myPicture;
     private BufferedImage myPicture2;
@@ -252,6 +252,9 @@ public class GUI {
             Elements.positionX = 0;
             Elements.positionY = 0;
             Elements.angle = 0;
+
+            StateMachine.currentArray = 0;
+            StateMachine.currentIndex = 0;
             panel.repaint();
             resetClicked = true;
             robotMoving = false;

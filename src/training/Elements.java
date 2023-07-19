@@ -10,7 +10,8 @@ public class Elements
     public static double frontUS = 0, rightUS = 0, frontIR = 0, backIR = 0;
 
     // позиция картинки в окне, ее координаты
-    public static int positionXRobot = 290, positionYRobot = 290, positionZRobot = 90;
+    public static int positionXRobot = 290, positionYRobot = 290;
+    public static float positionZRobot = 90;
 
     // позиция робота на какие координаты он перемещается
     public static float positionXonSimulator = 0, positionYonSimulator = 0, lastPosX = 0, lastPosY = 0;
@@ -34,29 +35,21 @@ public class Elements
 
     }
 
-    // подсчет координат
+
     public void calculateCoordinates()
     {
 
         angle += positionZRobot - lastAngle;
         lastAngle = positionZRobot;
 
-        double radians = Math.toRadians(angle);
-
         float noneX = (positionXRobot - LastPositionX) * 4;
         float noneY = (positionYRobot - LastPositionY) * 4;
 
-        float thetaR = (float)(Math.atan2(noneY, noneX) + radians);
-        float r = (float)(Math.sqrt(noneY * noneY + noneX * noneX));
-
-        positionX += (float)(r * Math.cos(thetaR));
-        positionY += (float)(r * Math.sin(thetaR));
+        positionX += noneX;
+        positionY += noneY;
 
         LastPositionX = positionXRobot;
         LastPositionY = positionYRobot;
-
-
-
 
         positionXRobot += positionXonSimulator - lastPosX;
         lastPosX = positionXonSimulator;
@@ -65,9 +58,6 @@ public class Elements
         lastPosY = positionYonSimulator;
 
 
-
-//        System.out.println("X: " + positionX + " Y: " + positionY + " Z: " + angle); // вывод координат робота
-//        System.out.println("X: " + positionXRobot + " Y: " + positionYRobot + " Z: " + positionZRobot); // вывод позиции картинки в окне
     }
 
     // работа датчиков

@@ -35,13 +35,13 @@ public class Odometry implements IState{
         this.mode = mode;
     }
 
-    private float[][] speedXandYfunc = {{0f, 5f, 15f, 40f, 70f, 150f, 170f, 220f}, {0f, 5f, 10f, 15f, 28f, 50f, 70f, 95}}; //ABS
-    private float[][] speedZfunc = { { 0f, 1.2f, 3f, 6f, 12f, 26, 32, 50 }, { 0f, 4f, 10f, 18, 24f, 32, 48, 70 } };//ABS
+    private final float[][] speedXandYfunc = {{0f, 5f, 15f, 40f, 70f, 150f, 170f, 220f}, {0f, 5f, 10f, 15f, 28f, 50f, 70f, 95}}; //ABS
+    private final float[][] speedZfunc = { { 0f, 1.2f, 3f, 6f, 12f, 26, 32, 50 }, { 0f, 4f, 10f, 18, 24f, 32, 48, 70 } };//ABS
 
-    private float[][] speedXandYfuncRel = {{0f, 5f, 15f, 30f, 70f, 120f},{0, 3f, 5f, 10f, 18f, 45f}}; //REL
-    private float [][] speedZfuncRel = {{0, 1.2f, 3f, 6f, 12f, 26f},{0f, 4f, 10f, 18, 24f, 32}}; //REL
+    private final float[][] speedXandYfuncRel = {{0f, 5f, 15f, 30f, 70f, 120f},{0, 3f, 5f, 10f, 18f, 45f}}; //REL
+    private final float [][] speedZfuncRel = {{0, 1.2f, 3f, 6f, 12f, 26f},{0f, 4f, 10f, 18, 24f, 32}}; //REL
 
-    private float[][] timeSpeed = {{0f, 0.15f, 0.3f, 0.5f, 0.8f}, {0f, 0.3f, 0.5f, 0.7f, 1}}; // time
+    private final float[][] timeSpeed = {{0f, 0.15f, 0.3f, 0.5f, 0.8f}, {0f, 0.3f, 0.5f, 0.7f, 1}}; // time
 
     private boolean WhatIsElement(String name, float x, float y, float z, SmoothEnum mode)
     {
@@ -91,7 +91,6 @@ public class Odometry implements IState{
         float nowY = y - Elements.positionY;
         float nowZ = z - (float) Elements.angle;
 
-        System.out.println("posX: " + nowX + " posY: " + nowY + " posZ: " + nowZ);
         float acc = Function.TransF(timeSpeed, StateMachine.Time - StateMachine.startTime);
 
         if (StateMachine.isFirst)
@@ -149,13 +148,11 @@ public class Odometry implements IState{
             nowY *= 5.2f;
         }
 
-        float r = Function.TransF(speedXandYfunc, (float) Math.sqrt(nowX * nowX + nowY * nowY));
-        float theta = (float) (Math.atan2(nowY, nowX) - Math.toRadians(Elements.angle));
-
-        float speedX = (float)(r * Math.cos(theta)) * acc;
-        float speedY = (float)(r * Math.sin(theta)) * acc;
+        float speedX = Function.TransF(speedXandYfunc, nowX) * acc;
+        float speedY = Function.TransF(speedXandYfunc, nowY) * acc;
         float speedZ = Function.TransF(speedZfunc, nowZ) * acc;
-//        float speedZ = nowZ * acc;
+
+
 
         if (stopX && stopY && stopZ)
         {
@@ -165,8 +162,6 @@ public class Odometry implements IState{
         {
             element.setAxisSpeed(speedX, speedY, speedZ);
         }
-
-        System.out.println(speedX + " " + speedY + " " + speedZ);
 
         return stopX && stopY && stopZ;
     }
