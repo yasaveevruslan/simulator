@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class GUI {
 
-    private static final String pathArea = "src/testFinal.png";
+    static final String pathArea = "src/paint.png";
     private static final String pathRobot = "src/none.png";
 
     private BufferedImage myPicture;
@@ -287,6 +287,7 @@ public class GUI {
     }
 
     private void addRobotInFrame(Graphics g) {
+        LogicBorders board = new LogicBorders();
         if (RobotContainer.startPosition) {
             Graphics2D g2d = (Graphics2D) g.create();
             g2d.rotate(Math.toRadians(Elements.positionZRobot), Elements.positionXRobot + myPicture2.getWidth() / 2d, Elements.positionYRobot + myPicture2.getHeight() / 2d);
@@ -295,6 +296,11 @@ public class GUI {
         } else {
             g.drawImage(myPicture2, Elements.positionXRobot, Elements.positionYRobot, null);
         }
+        board.findNearestLeftContours(Elements.positionXRobot,Elements.positionYRobot);
+        board.findNearestRightContours(Elements.positionXRobot,Elements.positionYRobot);
+        board.findNearestUpContours(Elements.positionXRobot,Elements.positionYRobot);
+        board.findNearestDownContours(Elements.positionXRobot,Elements.positionYRobot);
+
         infaCoordinateX.setText("X: " + String.format("%.4f", Elements.positionX));
         infaCoordinateY.setText("Y: " + String.format("%.4f", Elements.positionY));
         infaCoordinateZ.setText("Z: " + String.format("%.4f", Elements.angle));

@@ -20,8 +20,8 @@ public class States {
             {
 
                     new Start(),
-                    new Odometry(States.ABSOLUTE_ODOMETRY, 1000, 0, 90, SmoothEnum.OFF),
-                    new Odometry(States.ABSOLUTE_ODOMETRY, 1000, -500, -90, SmoothEnum.OFF),
+                    new Odometry(States.ABSOLUTE_ODOMETRY, 1600, 700, 90, SmoothEnum.OFF),
+                    new Odometry(States.ABSOLUTE_ODOMETRY, 900, -600, -90, SmoothEnum.OFF),
                     new Odometry(States.ABSOLUTE_ODOMETRY, 0, -500, -180, SmoothEnum.OFF),
                     new Odometry(States.ABSOLUTE_ODOMETRY, 0, 0, 0, SmoothEnum.OFF),
                     new End(),

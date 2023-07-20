@@ -10,7 +10,7 @@ public class Elements
     public static double frontUS = 0, rightUS = 0, frontIR = 0, backIR = 0;
 
     // позиция картинки в окне, ее координаты
-    public static int positionXRobot = 290, positionYRobot = 290;
+    public static int positionXRobot = 290, positionYRobot = 260;
     public static float positionZRobot = 90;
 
     // позиция робота на какие координаты он перемещается
