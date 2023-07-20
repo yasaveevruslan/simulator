@@ -16,6 +16,9 @@ public class Elements
     // позиция робота на какие координаты он перемещается
     public static float positionXonSimulator = 0, positionYonSimulator = 0, lastPosX = 0, lastPosY = 0;
 
+    public static boolean Errors = false, errorPosX = false, errorPosY = false;
+
+
 
     // увеличение координат робота
     public void setAxisSpeed(float x, float y, float z)
@@ -51,11 +54,18 @@ public class Elements
         LastPositionX = positionXRobot;
         LastPositionY = positionYRobot;
 
-        positionXRobot += positionXonSimulator - lastPosX;
-        lastPosX = positionXonSimulator;
+        if (!errorPosX)
+        {
+            positionXRobot += positionXonSimulator - lastPosX;
+            lastPosX = positionXonSimulator;
+        }
 
-        positionYRobot += positionYonSimulator - lastPosY;
-        lastPosY = positionYonSimulator;
+        if (!errorPosY)
+        {
+            positionYRobot += positionYonSimulator - lastPosY;
+            lastPosY = positionYonSimulator;
+        }
+
 
 
     }
@@ -98,5 +108,39 @@ public class Elements
             positionZRobot = 90;
         }
 
+    }
+
+    public void checkErrorPosition()
+    {
+        Errors = !Function.InRangeBool(positionXRobot, 50, 955) || !Function.InRangeBool(positionYRobot, 50, 455);
+
+        System.out.println("error: " + Errors);
+
+        errorPosX = !Function.InRangeBool(positionXRobot, 50, 950);
+
+        errorPosY = !Function.InRangeBool(positionYRobot, 50, 450);
+    }
+
+    public void setPositionOnWindow()
+    {
+        if (errorPosX)
+        {
+            positionXRobot += 0;
+        }
+        else
+        {
+            positionXRobot += positionXonSimulator - lastPosX;
+            lastPosX = positionXonSimulator;
+        }
+
+        if (errorPosX)
+        {
+            positionYRobot += 0;
+        }
+        else
+        {
+            positionYRobot += positionYonSimulator - lastPosY;
+            lastPosY = positionYonSimulator;
+        }
     }
 }
