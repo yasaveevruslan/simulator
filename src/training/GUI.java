@@ -11,9 +11,8 @@ import java.io.IOException;
 
 public class GUI {
 
-    private static final String pathArea = "src/testFinal.png";
-    private static final String pathRobot = "src/none.png";
-
+    protected static final String PATH_AREA = "src/paint.png";
+    private static final String PATH_ROBOT = "src/none.png";
     private BufferedImage myPicture;
     private BufferedImage myPicture2;
 
@@ -28,19 +27,19 @@ public class GUI {
     private final JToggleButton reset = new JToggleButton("RESET");
     private final JToggleButton smartBoard = new JToggleButton("ENABLE");
 
-    private final JTextArea infaCoordinateX = new JTextArea(1, 7);
-    private final JTextArea infaCoordinateY = new JTextArea(1, 7);
-    private final JTextArea infaCoordinateZ = new JTextArea(1, 7);
+    private final JTextArea infoCoordinateX = new JTextArea(1, 7);
+    private final JTextArea infoCoordinateY = new JTextArea(1, 7);
+    private final JTextArea infoCoordinateZ = new JTextArea(1, 7);
 
-    private final JTextArea infaModul = new JTextArea(1, 7);
+    private final JTextArea infoModule = new JTextArea(1, 7);
 
-    private final JTextArea infaArray = new JTextArea(1, 7);
-    private final JTextArea infaIndex = new JTextArea(1, 7);
+    private final JTextArea infoArray = new JTextArea(1, 7);
+    private final JTextArea infoIndex = new JTextArea(1, 7);
 
-    private final JTextArea infaFrontUS = new JTextArea(1, 7);
-    private final JTextArea infaRightUS = new JTextArea(1, 7);
-    private final JTextArea infaFrontIR = new JTextArea(1, 7);
-    private final JTextArea infaBackIR = new JTextArea(1, 7);
+    private final JTextArea infoFrontUS = new JTextArea(1, 7);
+    private final JTextArea infoRightUS = new JTextArea(1, 7);
+    private final JTextArea infoFrontIR = new JTextArea(1, 7);
+    private final JTextArea infoBackIR = new JTextArea(1, 7);
 
 
     public static boolean robotMoving = false;
@@ -64,7 +63,7 @@ public class GUI {
     private void createFrame() {
         frame = new JFrame("DEMO");
         frame.setSize(1200, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         createSmartPanel();
         createButtons();
         frame.setLayout(new BorderLayout());
@@ -111,7 +110,6 @@ public class GUI {
                 super.paintComponent(g);
                 g.drawImage(myPicture, 50, 50, this);
                 addRobotInFrame(g);
-//                System.out.println(Elements.positionXRobot + " " + Elements.positionYRobot);
             }
         };
         panel.setLayout(new OverlayLayout(panel));
@@ -120,7 +118,7 @@ public class GUI {
     }
 
     private void createSmartPanel() {
-        createBlockInfa();
+        createBlockInfo();
         smartPanel = new JPanel();
         smartPanel.setPreferredSize(new Dimension(400, 100));
         smartPanel.setBackground(Color.gray);
@@ -134,89 +132,87 @@ public class GUI {
             }
         });
 
-//        smartPanel.add(Box.createVerticalStrut(50));
+        smartPanel.add(infoCoordinateX);
+        smartPanel.add(infoCoordinateY);
+        smartPanel.add(infoCoordinateZ);
 
-        smartPanel.add(infaCoordinateX);
-        smartPanel.add(infaCoordinateY);
-        smartPanel.add(infaCoordinateZ);
+        smartPanel.add(infoModule);
 
-        smartPanel.add(infaModul);
+        smartPanel.add(infoArray);
+        smartPanel.add(infoIndex);
 
-        smartPanel.add(infaArray);
-        smartPanel.add(infaIndex);
-
-        smartPanel.add(infaFrontUS);
-        smartPanel.add(infaRightUS);
-        smartPanel.add(infaFrontIR);
-        smartPanel.add(infaBackIR);
+        smartPanel.add(infoFrontUS);
+        smartPanel.add(infoRightUS);
+        smartPanel.add(infoFrontIR);
+        smartPanel.add(infoBackIR);
 
     }
 
 
-    private void createBlockInfa(){
+    private void createBlockInfo(){
         Font font = new Font("Arial", Font.BOLD, 16);
 
-        infaCoordinateX.setFont(font);
-        infaCoordinateY.setFont(font);
-        infaCoordinateZ.setFont(font);
+        infoCoordinateX.setFont(font);
+        infoCoordinateY.setFont(font);
+        infoCoordinateZ.setFont(font);
 
-        infaModul.setFont(font);
+        infoModule.setFont(font);
 
-        infaArray.setFont(font);
-        infaIndex.setFont(font);
+        infoArray.setFont(font);
+        infoIndex.setFont(font);
 
-        infaFrontUS.setFont(font);
-        infaRightUS.setFont(font);
-        infaFrontIR.setFont(font);
-        infaBackIR.setFont(font);
+        infoFrontUS.setFont(font);
+        infoRightUS.setFont(font);
+        infoFrontIR.setFont(font);
+        infoBackIR.setFont(font);
 
-        infaCoordinateX.setLineWrap(true);
-        infaCoordinateX.setEditable(false);
+        infoCoordinateX.setLineWrap(true);
+        infoCoordinateX.setEditable(false);
 
-        infaCoordinateY.setLineWrap(true);
-        infaCoordinateY.setEditable(false);
+        infoCoordinateY.setLineWrap(true);
+        infoCoordinateY.setEditable(false);
 
-        infaCoordinateZ.setLineWrap(true);
-        infaCoordinateZ.setEditable(false);
-
-
-        infaModul.setLineWrap(true);
-        infaModul.setEditable(false);
+        infoCoordinateZ.setLineWrap(true);
+        infoCoordinateZ.setEditable(false);
 
 
-        infaArray.setLineWrap(true);
-        infaArray.setEditable(false);
-
-        infaIndex.setLineWrap(true);
-        infaIndex.setEditable(false);
+        infoModule.setLineWrap(true);
+        infoModule.setEditable(false);
 
 
-        infaFrontUS.setLineWrap(true);
-        infaFrontUS.setEditable(false);
+        infoArray.setLineWrap(true);
+        infoArray.setEditable(false);
 
-        infaRightUS.setLineWrap(true);
-        infaRightUS.setEditable(false);
+        infoIndex.setLineWrap(true);
+        infoIndex.setEditable(false);
 
-        infaFrontIR.setLineWrap(true);
-        infaFrontIR.setEditable(false);
 
-        infaBackIR.setLineWrap(true);
-        infaBackIR.setEditable(false);
+        infoFrontUS.setLineWrap(true);
+        infoFrontUS.setEditable(false);
+
+        infoRightUS.setLineWrap(true);
+        infoRightUS.setEditable(false);
+
+        infoFrontIR.setLineWrap(true);
+        infoFrontIR.setEditable(false);
+
+        infoBackIR.setLineWrap(true);
+        infoBackIR.setEditable(false);
 
         Insets padding = new Insets(10, 20, 10, 20); // Верхний, правый, нижний, левый отступы
-        infaCoordinateX.setMargin(padding);
-        infaCoordinateY.setMargin(padding);
-        infaCoordinateZ.setMargin(padding);
+        infoCoordinateX.setMargin(padding);
+        infoCoordinateY.setMargin(padding);
+        infoCoordinateZ.setMargin(padding);
 
-        infaModul.setMargin(padding);
+        infoModule.setMargin(padding);
 
-        infaArray.setMargin(padding);
-        infaIndex.setMargin(padding);
+        infoArray.setMargin(padding);
+        infoIndex.setMargin(padding);
 
-        infaFrontUS.setMargin(padding);
-        infaRightUS.setMargin(padding);
-        infaFrontIR.setMargin(padding);
-        infaBackIR.setMargin(padding);
+        infoFrontUS.setMargin(padding);
+        infoRightUS.setMargin(padding);
+        infoFrontIR.setMargin(padding);
+        infoBackIR.setMargin(padding);
 
     }
 
@@ -224,11 +220,9 @@ public class GUI {
         start.addActionListener(e -> {
             stopClicked = false;
             resetClicked = false;
-//            degrees = 90;
             robotMoving = true;
             Timer timer = new Timer(50, e1 -> {
                 if ((!stopClicked || !resetClicked) && robotMoving) {
-//                if (robotMoving) {
                     panel.repaint();
                 } else {
                     ((Timer) e1.getSource()).stop();
@@ -264,12 +258,7 @@ public class GUI {
 
             smartBoard.addActionListener(e -> {
                 System.out.println(smartPanel.isVisible());
-                if(!smartPanel.isVisible()) {
-                    smartPanel.setVisible(true);
-                }else {
-                    smartPanel.setVisible(false);
-
-                }
+                smartPanel.setVisible(!smartPanel.isVisible());
                 panel.repaint();
 
             });
@@ -279,10 +268,10 @@ public class GUI {
 
     private void loadImages() {
         try {
-            myPicture = ImageIO.read(new File(pathArea));
-            myPicture2 = ImageIO.read(new File(pathRobot));
+            myPicture = ImageIO.read(new File(PATH_AREA));
+            myPicture2 = ImageIO.read(new File(PATH_ROBOT));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -295,19 +284,19 @@ public class GUI {
         } else {
             g.drawImage(myPicture2, Elements.positionXRobot, Elements.positionYRobot, null);
         }
-        infaCoordinateX.setText("X: " + String.format("%.4f", Elements.positionX));
-        infaCoordinateY.setText("Y: " + String.format("%.4f", Elements.positionY));
-        infaCoordinateZ.setText("Z: " + String.format("%.4f", Elements.angle));
+        infoCoordinateX.setText("X: " + String.format("%.4f", Elements.positionX));
+        infoCoordinateY.setText("Y: " + String.format("%.4f", Elements.positionY));
+        infoCoordinateZ.setText("Z: " + String.format("%.4f", Elements.angle));
 
-        infaModul.setText("Module: " + StateMachine.commandLogic);
+        infoModule.setText("Module: " + StateMachine.commandLogic);
 
-        infaArray.setText("Array: " + StateMachine.currentArray);
-        infaIndex.setText("Index: " + StateMachine.currentIndex);
+        infoArray.setText("Array: " + StateMachine.currentArray);
+        infoIndex.setText("Index: " + StateMachine.currentIndex);
 
-        infaFrontUS.setText("FrontUS: " + String.format("%.4f", Elements.frontUS));
-        infaRightUS.setText("RightUS: " + String.format("%.4f", Elements.rightUS));
-        infaFrontIR.setText("FrontIR: " + String.format("%.4f", Elements.frontIR));
-        infaBackIR.setText("BackIR: " + String.format("%.4f", Elements.backIR));
+        infoFrontUS.setText("FrontUS: " + String.format("%.4f", Elements.frontUS));
+        infoRightUS.setText("RightUS: " + String.format("%.4f", Elements.rightUS));
+        infoFrontIR.setText("FrontIR: " + String.format("%.4f", Elements.frontIR));
+        infoBackIR.setText("BackIR: " + String.format("%.4f", Elements.backIR));
 
 
     }
