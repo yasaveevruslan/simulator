@@ -7,7 +7,7 @@ import training.States;
 public class Reset implements IState{
 
     private float x, y, z;
-    private String element;
+    private final String element;
 
     private Elements el = RobotContainer.el;
 

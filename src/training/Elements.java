@@ -17,9 +17,9 @@ public class Elements
     public static int newPosXRobot = 290, newPosYRobot = 290;
     public static int lastNewPosX = 290, lastNewPosY = 290;
     // позиция робота на какие координаты он перемещается
-    public static float positionXonSimulator = 0, positionYonSimulator = 0, lastPosX = 0, lastPosY = 0;
+    public static float positionXonSimulator, positionYonSimulator, lastPosX, lastPosY;
 
-    public static boolean Errors = false, errorPosX = false, errorPosY = false;
+    public static boolean Errors, errorPosX, errorPosY;
 
 
 

@@ -20,7 +20,7 @@ public class Main
                 try
                 {
                     initialize();
-                    sm.Time += 0.005f;
+                    sm.time += 0.005f;
                     Thread.sleep(50);
 //                    System.out.println("array: " + StateMachine.currentArray + " index: " + StateMachine.currentIndex);
                 }
@@ -38,8 +38,8 @@ public class Main
         RobotContainer.el.calculateCoordinates();
         RobotContainer.el.calculateSensors();
         RobotContainer.el.resetButton(GUI.resetClicked);
-        sm.ResetStateMachine(GUI.resetClicked);
-        sm.Update();
+        sm.resetStateMachine(GUI.resetClicked);
+        sm.update();
         RobotContainer.el.checkErrorPosition();
         RobotContainer.el.setPositionOnWindow();
     }

@@ -41,10 +41,6 @@ public class Function
                     }
                     break;
                 }
-                else
-                {
-                    continue;
-                }
             }
             else
             {
@@ -55,14 +51,15 @@ public class Function
                     min_o = array[1][i - 1];
                     max_o =  array[1][i];
 
+                    float v = min_o + (((max_o - min_o) * ((Math.abs(number) - min_i) * 100 / (max_i - min_i))) / 100);
                     if (number > 0)
                     {
-                        output = min_o + (((max_o - min_o) * ((Math.abs(number) - min_i) * 100 / (max_i - min_i))) / 100);
+                        output = v;
                         break;
                     }
                     else
                     {
-                        output = - (min_o + (((max_o - min_o) * ((Math.abs(number) - min_i) * 100 / (max_i - min_i))) / 100));
+                        output = -v;
                         break;
                     }
                 }

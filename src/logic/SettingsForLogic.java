@@ -34,11 +34,12 @@ public class SettingsForLogic
         return coordinate;
     }
 
-    public ArrayList<String> getCommands()
+    public List<String> getCommands()
     {
         ArrayList<String> commands = new ArrayList<>();
 
-        int positionGreenDEL = 0, positionRedDEL = 0;
+        int positionGreenDEL = 0;
+        int positionRedDEL = 0;
         List<String> cubeR = new ArrayList<>();
         List<String> cubeG = new ArrayList<>();
 

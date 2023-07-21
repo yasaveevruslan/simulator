@@ -16,8 +16,6 @@ public class GUI {
     private BufferedImage myPicture;
     private BufferedImage myPicture2;
 
-
-
     private JFrame frame;
     private JPanel panel;
     private JPanel smartPanel;
@@ -41,10 +39,9 @@ public class GUI {
     private final JTextArea infoFrontIR = new JTextArea(1, 7);
     private final JTextArea infoBackIR = new JTextArea(1, 7);
 
-
-    public static boolean robotMoving = false;
-    public static boolean resetClicked = false;
-    public static boolean stopClicked = false;
+    public static boolean robotMoving;
+    public static boolean resetClicked;
+    public static boolean stopClicked;
 
     public static void showGUI() {
         GUI gui = new GUI();
@@ -276,6 +273,8 @@ public class GUI {
     }
 
     private void addRobotInFrame(Graphics g) {
+        LogicBorders board = new LogicBorders();
+
         if (RobotContainer.startPosition) {
             Graphics2D g2d = (Graphics2D) g.create();
             g2d.rotate(Math.toRadians(Elements.positionZRobot), Elements.positionXRobot + myPicture2.getWidth() / 2d, Elements.positionYRobot + myPicture2.getHeight() / 2d);
@@ -284,6 +283,8 @@ public class GUI {
         } else {
             g.drawImage(myPicture2, Elements.positionXRobot, Elements.positionYRobot, null);
         }
+        board.findNearestLeftContours(Elements.positionXRobot,Elements.positionYRobot);
+
         infoCoordinateX.setText("X: " + String.format("%.4f", Elements.positionX));
         infoCoordinateY.setText("Y: " + String.format("%.4f", Elements.positionY));
         infoCoordinateZ.setText("Z: " + String.format("%.4f", Elements.angle));

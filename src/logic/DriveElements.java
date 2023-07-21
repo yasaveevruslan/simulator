@@ -1,8 +1,8 @@
 package logic;
 public class DriveElements {
 
-    private String action;
-    private int positionLift;
+    private final String action;
+    private final int positionLift;
 
     public DriveElements(String actionIn, int positionLiftIn){
         this.action = actionIn;

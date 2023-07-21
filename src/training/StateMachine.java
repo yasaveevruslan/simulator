@@ -11,26 +11,26 @@ public class StateMachine {
     public static int indexElementLogic = 0;
 
     public static float startTime = 0;
-    public static float Time = 0;
+    public static float time = 0;
 
 
-    public void Update()
+    public void update()
     {
         if (States.state[currentArray][currentIndex].execute())
         {
             isFirst = true;
-            startTime = Time;
+            startTime = time;
             currentIndex++;
         }
     }
 
-    public void ResetStateMachine(boolean reset)
+    public void resetStateMachine(boolean reset)
     {
         if (reset)
         {
             currentArray = 0;
             currentIndex = 0;
-            startTime = Time;
+            startTime = time;
             isFirst = false;
         }
 

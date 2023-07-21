@@ -11,7 +11,7 @@ public class Sensors implements IState
 
     private float x, y, z;
     private SmoothEnum mode;
-    private String element;
+    private final String element;
 
     private float gyro = 0;
 

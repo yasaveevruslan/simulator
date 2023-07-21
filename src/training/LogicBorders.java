@@ -34,7 +34,7 @@ public class LogicBorders {
                 for (MatOfPoint contour : contours) {
                     Moments moments = Imgproc.moments(contour);
                     double centerX = moments.m10 / moments.m00;
-                    double centerY = moments.m01 / moments.m00;
+                    double centerY = moments.m01 /   moments.m00;
 
                     double distanceX = Math.abs(centerX - robotPosition.x);
 

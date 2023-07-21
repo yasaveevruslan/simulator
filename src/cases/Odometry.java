@@ -10,7 +10,7 @@ public class Odometry implements IState{
 
     public Elements element = new Elements();
 
-    private String name;
+    private final String name;
 
     private float x, y, z;
 
@@ -91,7 +91,7 @@ public class Odometry implements IState{
         float nowY = y - Elements.positionY;
         float nowZ = z - (float) Elements.angle;
 
-        float acc = Function.TransF(timeSpeed, StateMachine.Time - StateMachine.startTime);
+        float acc = Function.TransF(timeSpeed, StateMachine.time - StateMachine.startTime);
 
         if (StateMachine.isFirst)
         {

@@ -3,11 +3,12 @@ package logic;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class InitLogic
 {
-    public static ArrayList<DriveElements> driveElements = new ArrayList<>();
-    public ArrayList<int[]> indexMas = new ArrayList<>();
+    public static List<DriveElements> driveElements = new ArrayList<>();
+    public List<int[]> indexMas = new ArrayList<>();
 
     public String[][] orders = new String[][]{
         {"none", "none", "none", "none", "none", "none", "none"},
@@ -47,7 +48,7 @@ public class InitLogic
     public void initCmodule()
     {
         SettingsForLogic set = new SettingsForLogic(warehouse,orders);
-        ArrayList<String> arr = set.getCommands();
+        List<String> arr = set.getCommands();
 
         if(commandPath.equals("warehouse"))
         {
@@ -115,7 +116,7 @@ public class InitLogic
     {
         SettingsForLogic set = new SettingsForLogic(warehouse,orders);
 
-        ArrayList<String> arr = set.getCommands();
+        List<String> arr = set.getCommands();
         ArrayList<String> delR = new ArrayList<>();
         ArrayList<String> retR = new ArrayList<>();
         ArrayList<String> delG = new ArrayList<>();
@@ -150,7 +151,7 @@ public class InitLogic
         }
         setRetPathGreen(retG, commandPath);
         setDeliveryPathGreen(delG, commandPath);
-        setRetPathRed(retR,commandPath);
+        setRetPathRed(retR);
         setDeliveryPathRed(delR);
 
 
@@ -177,23 +178,22 @@ public class InitLogic
             boolean firstPalate = numberPalace == 0|| numberPalace == 1 || numberPalace == 2;
 
             if(firstPalate){
-                ArrayList<String> arr = set.getCommands();
+                List<String> arr = set.getCommands();
                 ArrayList<String> retG = new ArrayList<>();
 
                 for (String command : arr) {
 
-                    if (command.split(" ")[0].equals("RET")) {
-                        if (!command.split(" ")[2].equals("yellow")) {
+                    if (command.split(" ")[0].equals("RET") && (!command.split(" ")[2].equals("yellow"))) {
                             retG.add(command);
                             valueRetGreen+=1;
-                        }
+
                     }
                 }
 
                 setRetPathGreenF(retG, numberPalace);
             }else{
 
-                ArrayList<String> arr = set.getCommands();
+                List<String> arr = set.getCommands();
                 ArrayList<String> delR = new ArrayList<>();
                 ArrayList<String> retR = new ArrayList<>();
                 ArrayList<String> delG = new ArrayList<>();
@@ -219,7 +219,7 @@ public class InitLogic
                 }
                 setRetPathGreen(retG, commandPath);
                 setDeliveryPathGreen(delG, commandPath);
-                setRetPathRed(retR, commandPath);
+                setRetPathRed(retR);
                 setDeliveryPathRed(delR);
 
             }
@@ -242,12 +242,12 @@ public class InitLogic
 
     private void setRetPathGreenC(ArrayList<String> ret)
     {
-        if(ret.size() != 0){
+        if(!ret.isEmpty()){
             for (int i = 0; i < ret.size(); i++)
             {
                 String command = ret.get(i);
                 int indexPalate = Arrays.asList(palace).indexOf(command.split(" ")[1]);
-                if (driveElements.size()==0)
+                if (driveElements.isEmpty())
                 {
                     driveElements.add(new DriveElements("FromStartTo"+command.split(" ")[1],0));
                     driveElements.add(new DriveElements("EndPalate"+command.split(" ")[1],0));
@@ -274,7 +274,7 @@ public class InitLogic
     {
         for (String command : ret) {
             int indexPalate = Arrays.asList(palace).indexOf(command.split(" ")[1]);
-            if (driveElements.size() == 0) {
+            if (driveElements.isEmpty()) {
                 driveElements.add(new DriveElements("FromStartTo" + command.split(" ")[1], 0));
 
                 driveElements.add(new DriveElements("EndPalate" + command.split(" ")[1], 0));
@@ -297,7 +297,7 @@ public class InitLogic
         for (String command : del) {
             int indexPalate = Arrays.asList(palace).indexOf(command.split(" ")[1]);
 
-            if (driveElements.size() == 0) {
+            if (driveElements.isEmpty()) {
                 driveElements.add(new DriveElements("FromStartToWarehouse", 0));
             }
 
@@ -319,7 +319,7 @@ public class InitLogic
 
         for (String command : del) {
             int indexPalate = Arrays.asList(palace).indexOf(command.split(" ")[1]);
-            if (driveElements.size() == 0) {
+            if (driveElements.isEmpty()) {
                 driveElements.add(new DriveElements("FromStartToWarehouse", 0));
             }
 
@@ -334,7 +334,7 @@ public class InitLogic
         }
     }
 
-    private void setWarehousePath(ArrayList<String> path){
+    private void setWarehousePath(List<String> path){
         SettingsForLogic set = new SettingsForLogic(warehouse,orders);
 
         String[] coordinate = set.getCubeForWarehouse(path.get(path.size() - 1).split(" ")[2]).split(" ");
@@ -374,7 +374,7 @@ public class InitLogic
 
         String lastCommand = " ";
 
-        if(driveElements.size()!=0)
+        if(!driveElements.isEmpty())
         {
             lastCommand = driveElements.get(driveElements.size()-1).getAction().split(" ")[0];
         }
@@ -386,7 +386,7 @@ public class InitLogic
             String command = del.get(i);
             int indexPalate = Arrays.asList(palace).indexOf(command.split(" ")[1]);
 
-            if (driveElements.size() == 0)
+            if (driveElements.isEmpty())
             {
                 driveElements.add(new DriveElements("FromStartToWarehouse", 0));
             }
@@ -452,11 +452,11 @@ public class InitLogic
             String command = del.get(i);
             int indexPalate = Arrays.asList(palace).indexOf(command.split(" ")[1]);
 
-            if (driveElements.size() == 0 && commandPath.equals("F"))
+            if (driveElements.isEmpty() && commandPath.equals("F"))
             {
                 driveElements.add(new DriveElements("FromFourthToWarehouse", 0));
 
-            } else if (driveElements.size() == 0) {
+            } else if (driveElements.isEmpty()) {
                 driveElements.add(new DriveElements("FromStartToWarehouse", 0));
 
 
@@ -498,73 +498,62 @@ public class InitLogic
         }
     }
 
-    private void setRetPathRed(ArrayList<String> ret, String commandPath)
+    private void setRetPathRed(ArrayList<String> ret)
     {
         String lastCommand = " ";
         for(String name : ret)
         {
             System.out.println(name);
         }
-        for (int i = 0; i < ret.size(); i++)
-        {
-            String command = ret.get(i);
-            if(driveElements.size()!=0)
-            {
-                lastCommand = driveElements.get(driveElements.size()-1).getAction().split(" ")[0];
+        for (String command : ret) {
+            if (!driveElements.isEmpty()) {
+                lastCommand = driveElements.get(driveElements.size() - 1).getAction().split(" ")[0];
             }
 
             int indexPalate = Arrays.asList(palace).indexOf(command.split(" ")[1]);
-            if (driveElements.size()==0)
-            {
-                driveElements.add(new DriveElements("FromStartTo"+command.split(" ")[1],0));
+            if (driveElements.isEmpty()) {
+                driveElements.add(new DriveElements("FromStartTo" + command.split(" ")[1], 0));
 
-                driveElements.add(new DriveElements("EndPalate"+command.split(" ")[1],0));
-                driveElements.add(new DriveElements(stands[indexPalate][1]+"Palate"+command.split(" ")[1],0));
-            }
-            else if (lastCommand.equals("CubeIn") || lastCommand.equals("CubePut"))
-            {
+                driveElements.add(new DriveElements("EndPalate" + command.split(" ")[1], 0));
+                driveElements.add(new DriveElements(stands[indexPalate][1] + "Palate" + command.split(" ")[1], 0));
+            } else if (lastCommand.equals("CubeIn") || lastCommand.equals("CubePut")) {
                 String lastPalate = lastPalateMethod;
                 String nextPalate = command.split(" ")[1];
-                if(!lastPalate.equals(nextPalate))
-                {
+                if (!lastPalate.equals(nextPalate)) {
                     driveElements.add(new DriveElements("From" + lastPalate + "To" + nextPalate, 0));
-                    driveElements.add(new DriveElements("EndPalate"+command.split(" ")[1],0));
-                    driveElements.add(new DriveElements(stands[indexPalate][1]+"Palate"+command.split(" ")[1],0));
+                    driveElements.add(new DriveElements("EndPalate" + command.split(" ")[1], 0));
+                    driveElements.add(new DriveElements(stands[indexPalate][1] + "Palate" + command.split(" ")[1], 0));
+                } else {
+                    driveElements.add(new DriveElements(stands[indexPalate][1] + "Palate" + command.split(" ")[1], 0));
+
                 }
-                else
-                {
-                    driveElements.add(new DriveElements(stands[indexPalate][1]+"Palate"+command.split(" ")[1],0));;
+            } else {
+                if (lastCommand.equals("CleanGoWarehouse")) {
+                    driveElements.remove(driveElements.size() - 1);
                 }
-            }
-            else
-            {
-                if(lastCommand.equals("CleanGoWarehouse"))
-                {
-                    driveElements.remove(driveElements.size()-1);
-                } 
                 driveElements.add(new DriveElements("FromCleanTo" + command.split(" ")[1], 0));
-                driveElements.add(new DriveElements("EndPalate"+command.split(" ")[1],0));
-                driveElements.add(new DriveElements(stands[indexPalate][1]+"Palate"+command.split(" ")[1],0));
+                driveElements.add(new DriveElements("EndPalate" + command.split(" ")[1], 0));
+                driveElements.add(new DriveElements(stands[indexPalate][1] + "Palate" + command.split(" ")[1], 0));
             }
-            driveElements.add(new DriveElements("CubeOut",Integer.parseInt(command.split(" ")[3])));
-            driveElements.add(new DriveElements("From"+command.split(" ")[1]+"ToClean",0));
+            driveElements.add(new DriveElements("CubeOut", Integer.parseInt(command.split(" ")[3])));
+            driveElements.add(new DriveElements("From" + command.split(" ")[1] + "ToClean", 0));
             driveElements.add(new DriveElements("ToCleanLift", 0));
             driveElements.add(new DriveElements("CubeCleanInRobot", 0));
-            driveElements.add(new DriveElements("Clean",0));
+            driveElements.add(new DriveElements("Clean", 0));
         }
     }
 
     private void setRetPathGreen(ArrayList<String> ret, String commandPath)
     {
-        if(ret.size() != 0){
+        if(!ret.isEmpty()){
             for (int i = 0; i < ret.size(); i++)
             {
                 String command = ret.get(i);
                 int indexPalate = Arrays.asList(palace).indexOf(command.split(" ")[1]);
-                if(driveElements.size()==0 && commandPath.equals("F")){
+                if(driveElements.isEmpty() && commandPath.equals("F")){
                     driveElements.add(new DriveElements("StartCubeOutScan",0));
                     driveElements.add(new DriveElements(stands[indexPalate][0]+"Palate"+command.split(" ")[1],0));
-                }else if (driveElements.size()==0)
+                }else if (driveElements.isEmpty())
                 {
                     driveElements.add(new DriveElements("FromStartTo"+command.split(" ")[1],0));
                     driveElements.add(new DriveElements("EndPalate"+command.split(" ")[1],0));
