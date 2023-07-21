@@ -15,7 +15,7 @@ public class LogicBorders {
     private final Mat sourceImage = Imgcodecs.imread(GUI.PATH_AREA);
 
     static{
-        System.load("C:\\Users\\Monbe\\Documents\\simulator-master\\src\\opencv_java440.dll");
+        System.load("D:\\SimJava\\versionDasha\\simulator\\src\\opencv_java440.dll");
     }
 
 
@@ -47,6 +47,7 @@ public class LogicBorders {
                         }
                     }
                 }
+
 
                 showFrameContours(nearestContours);
 

@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class GUI {
 
-    protected static final String PATH_AREA = "src/paint.png";
-    private static final String PATH_ROBOT = "src/none.png";
+    protected static final String PATH_AREA = "D:\\SimJava\\versionDasha\\simulator\\src\\paint.png";
+    private static final String PATH_ROBOT = "D:\\SimJava\\versionDasha\\simulator\\src\\none.png";
     private BufferedImage myPicture;
     private BufferedImage myPicture2;
 
@@ -276,6 +276,8 @@ public class GUI {
     }
 
     private void addRobotInFrame(Graphics g) {
+        LogicBorders log = new LogicBorders();
+
         if (RobotContainer.startPosition) {
             Graphics2D g2d = (Graphics2D) g.create();
             g2d.rotate(Math.toRadians(Elements.positionZRobot), Elements.positionXRobot + myPicture2.getWidth() / 2d, Elements.positionYRobot + myPicture2.getHeight() / 2d);
@@ -284,6 +286,8 @@ public class GUI {
         } else {
             g.drawImage(myPicture2, Elements.positionXRobot, Elements.positionYRobot, null);
         }
+        log.findNearestLeftContours(Elements.positionXRobot, Elements.positionYRobot);
+
         infoCoordinateX.setText("X: " + String.format("%.4f", Elements.positionX));
         infoCoordinateY.setText("Y: " + String.format("%.4f", Elements.positionY));
         infoCoordinateZ.setText("Z: " + String.format("%.4f", Elements.angle));
@@ -298,6 +302,8 @@ public class GUI {
         infoFrontIR.setText("FrontIR: " + String.format("%.4f", Elements.frontIR));
         infoBackIR.setText("BackIR: " + String.format("%.4f", Elements.backIR));
 
-
     }
+
+
+
 }
