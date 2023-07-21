@@ -135,6 +135,8 @@ public class Odometry implements IState{
             smooth = true;
         }
 
+
+
         boolean stopX = Function.InRangeBool(nowX, -cofX, cofX);
         boolean stopY = Function.InRangeBool(nowY, -cofX, cofX);
         boolean stopZ = Function.InRangeBool(nowZ, -cofZ, cofZ);
@@ -148,8 +150,11 @@ public class Odometry implements IState{
             nowY *= 5.2f;
         }
 
-        float speedX = Function.TransF(speedXandYfunc, nowX) * acc;
-        float speedY = Function.TransF(speedXandYfunc, nowY) * acc;
+        float r = Function.TransF(speedXandYfunc, (float) Math.sqrt(nowX * nowX + nowY * nowY));
+        float theta = (float) (Math.atan2(nowY, nowX));
+
+        float speedX = (float)(r * Math.cos(theta)) * acc;
+        float speedY = (float)(r * Math.sin(theta)) * acc;
         float speedZ = Function.TransF(speedZfunc, nowZ) * acc;
 
 

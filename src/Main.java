@@ -40,5 +40,7 @@ public class Main
         RobotContainer.el.resetButton(GUI.resetClicked);
         sm.ResetStateMachine(GUI.resetClicked);
         sm.Update();
+        RobotContainer.el.checkErrorPosition();
+        RobotContainer.el.setPositionOnWindow();
     }
 }

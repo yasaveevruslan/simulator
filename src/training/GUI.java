@@ -299,10 +299,10 @@ public class GUI {
         infaCoordinateY.setText("Y: " + String.format("%.4f", Elements.positionY));
         infaCoordinateZ.setText("Z: " + String.format("%.4f", Elements.angle));
 
-        infaModul.setText("modul: " + StateMachine.commandLogic);
+        infaModul.setText("Module: " + StateMachine.commandLogic);
 
         infaArray.setText("Array: " + StateMachine.currentArray);
-        infaIndex.setText("Array: " + StateMachine.currentIndex);
+        infaIndex.setText("Index: " + StateMachine.currentIndex);
 
         infaFrontUS.setText("FrontUS: " + String.format("%.4f", Elements.frontUS));
         infaRightUS.setText("RightUS: " + String.format("%.4f", Elements.rightUS));
