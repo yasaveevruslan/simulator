@@ -20,8 +20,11 @@ public class Main
                 try
                 {
                     initialize();
-                    sm.time += 0.005f;
+                    StateMachine.time += 0.005f;
                     Thread.sleep(50);
+
+//                    StateMachine.time += 1f;
+//                    Thread.sleep(1000);
 //                    System.out.println("array: " + StateMachine.currentArray + " index: " + StateMachine.currentIndex);
                 }
                 catch (Exception e)

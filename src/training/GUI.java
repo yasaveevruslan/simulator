@@ -12,6 +12,7 @@ import java.io.IOException;
 public class GUI {
 
     protected static final String PATH_AREA = "src/paint.png";
+    protected static final String PATH_AREA_COUNTER = "src/paint.png";
     private static final String PATH_ROBOT = "src/none.png";
     private BufferedImage myPicture;
     private BufferedImage myPicture2;
@@ -283,21 +284,23 @@ public class GUI {
         } else {
             g.drawImage(myPicture2, Elements.positionXRobot, Elements.positionYRobot, null);
         }
-        board.findNearestLeftContours(Elements.positionXRobot,Elements.positionYRobot);
 
-        infoCoordinateX.setText("X: " + String.format("%.4f", Elements.positionX));
-        infoCoordinateY.setText("Y: " + String.format("%.4f", Elements.positionY));
-        infoCoordinateZ.setText("Z: " + String.format("%.4f", Elements.angle));
+//        board.findNearestUpContours(Elements.positionXRobot,Elements.positionYRobot);
+        board.calculateBorders(Elements.positionXRobot,Elements.positionYRobot);
+
+        infoCoordinateX.setText("X: " + String.format("%.2f", Elements.positionX));
+        infoCoordinateY.setText("Y: " + String.format("%.2f", Elements.positionY));
+        infoCoordinateZ.setText("Z: " + String.format("%.2f", Elements.angle));
 
         infoModule.setText("Module: " + StateMachine.commandLogic);
 
         infoArray.setText("Array: " + StateMachine.currentArray);
         infoIndex.setText("Index: " + StateMachine.currentIndex);
 
-        infoFrontUS.setText("FrontUS: " + String.format("%.4f", Elements.frontUS));
-        infoRightUS.setText("RightUS: " + String.format("%.4f", Elements.rightUS));
-        infoFrontIR.setText("FrontIR: " + String.format("%.4f", Elements.frontIR));
-        infoBackIR.setText("BackIR: " + String.format("%.4f", Elements.backIR));
+        infoFrontUS.setText("FrontUS: " + String.format("%.2f", Elements.frontUS));
+        infoRightUS.setText("RightUS: " + String.format("%.2f", Elements.rightUS));
+        infoFrontIR.setText("FrontIR: " + String.format("%.2f", Elements.frontIR));
+        infoBackIR.setText("BackIR: " + String.format("%.2f", Elements.backIR));
 
 
     }
